@@ -1,0 +1,206 @@
+.layout {
+  width: min(720px, 100%);
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  border-inline: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.header h1 {
+  margin: 0 0 8px;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  letter-spacing: -0.04em;
+}
+
+.lead,
+.hint {
+  margin: 0;
+  color: #64748b;
+}
+
+.lead {
+  font-size: 1.05rem;
+  color: #334155;
+}
+
+.nav {
+  display: flex;
+  gap: 8px;
+  margin: 24px 0;
+  padding: 4px;
+  border-radius: 10px;
+  background: #f1f5f9;
+}
+
+.nav-item {
+  flex: 1;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: transparent;
+  color: #475569;
+  cursor: pointer;
+}
+
+.nav-item.ativo {
+  background: #fff;
+  color: #0f172a;
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 8%);
+}
+
+.conteudo h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.painel p {
+  margin: 0 0 16px;
+  color: #334155;
+}
+
+.botao-principal,
+.formulario button[type='submit'] {
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 16px;
+  background: #0f766e;
+  color: #fff;
+  cursor: pointer;
+}
+
+.formulario {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.grade-campos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.grade-campos label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.grade-campos input {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+.erro {
+  color: #b91c1c;
+}
+
+.vazio {
+  padding: 16px;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #64748b;
+}
+
+.lista-afericoes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.card-afericao {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.medida {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 650;
+}
+
+.medida span {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.meta {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.acoes-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.acoes-card button {
+  border: 0;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.selo {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.selo-normal {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.selo-atencao {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.selo-limite {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.selo-alta {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.selo-crise {
+  background: #7f1d1d;
+  color: #fff;
+}
