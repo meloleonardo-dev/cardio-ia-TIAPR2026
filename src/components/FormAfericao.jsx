@@ -1,12 +1,16 @@
 import { useState } from 'react'
+import { Save } from 'lucide-react'
+import Botao from './ui/Botao.jsx'
+import Campo from './ui/Campo.jsx'
 
 const formInicial = {
   sistolica: '',
   diastolica: '',
   pulso: '',
+  contexto: 'rotina',
 }
 
-export default function FormAfericao({ onSalvar }) {
+export default function FormAfericao({ onSalvar, desabilitado }) {
   const [form, setForm] = useState(formInicial)
   const [erro, setErro] = useState('')
 
@@ -17,6 +21,11 @@ export default function FormAfericao({ onSalvar }) {
 
   function handleSubmit(evento) {
     evento.preventDefault()
+
+    if (desabilitado) {
+      setErro('Selecione um paciente antes de salvar a medição.')
+      return
+    }
 
     const sistolica = Number(form.sistolica)
     const diastolica = Number(form.diastolica)
@@ -32,7 +41,12 @@ export default function FormAfericao({ onSalvar }) {
       return
     }
 
-    onSalvar({ sistolica, diastolica, pulso })
+    onSalvar({
+      sistolica,
+      diastolica,
+      pulso,
+      contexto: form.contexto,
+    })
     setForm(formInicial)
     setErro('')
   }
@@ -40,58 +54,62 @@ export default function FormAfericao({ onSalvar }) {
   return (
     <form className="formulario" onSubmit={handleSubmit}>
       <h2>Nova aferição</h2>
-
       <p className="hint">
-        Valores em mmHg, como no medidor. Isto é registro educacional,
-        não diagnóstico médico.
+        Valores em mmHg, como no medidor. O contexto (rotina ou dor) entra no
+        perfil. Registro educacional, não diagnóstico médico.
       </p>
 
       <div className="grade-campos">
-        <label>
-          Sistólica
-          <input
-            name="sistolica"
-            type="number"
-            min="70"
-            max="250"
-            placeholder="120"
-            value={form.sistolica}
+        <Campo
+          label="Sistólica"
+          name="sistolica"
+          type="number"
+          min="70"
+          max="250"
+          value={form.sistolica}
+          onChange={atualizarCampo}
+          disabled={desabilitado}
+        />
+        <Campo
+          label="Diastólica"
+          name="diastolica"
+          type="number"
+          min="40"
+          max="150"
+          value={form.diastolica}
+          onChange={atualizarCampo}
+          disabled={desabilitado}
+        />
+        <Campo
+          label="Pulso (opcional)"
+          name="pulso"
+          type="number"
+          min="30"
+          max="220"
+          value={form.pulso}
+          onChange={atualizarCampo}
+          disabled={desabilitado}
+        />
+        <Campo label="Contexto">
+          <select
+            name="contexto"
+            value={form.contexto}
             onChange={atualizarCampo}
-          />
-        </label>
-
-        <label>
-          Diastólica
-          <input
-            name="diastolica"
-            type="number"
-            min="40"
-            max="150"
-            placeholder="80"
-            value={form.diastolica}
-            onChange={atualizarCampo}
-          />
-        </label>
-
-        <label>
-          Pulso (opcional)
-          <input
-            name="pulso"
-            type="number"
-            min="30"
-            max="220"
-            placeholder="72"
-            value={form.pulso}
-            onChange={atualizarCampo}
-          />
-        </label>
+            disabled={desabilitado}
+          >
+            <option value="rotina">Rotina / repouso</option>
+            <option value="dor">Durante dor</option>
+            <option value="esforco">Após esforço</option>
+            <option value="outro">Outro</option>
+          </select>
+        </Campo>
       </div>
 
-      {erro && <p className="erro">{erro}</p>}
+      {erro ? <p className="erro">{erro}</p> : null}
 
-      <button type="submit" className="botao-principal">
-        Salvar aferição
-      </button>
+      <Botao type="submit" icone={Save} disabled={desabilitado}>
+        Salvar neste paciente
+      </Botao>
     </form>
   )
 }

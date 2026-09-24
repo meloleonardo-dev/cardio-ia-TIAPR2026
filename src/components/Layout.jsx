@@ -1,17 +1,15 @@
+import { Outlet } from 'react-router-dom'
 import Header from './Header.jsx'
 import Nav from './Nav.jsx'
 
-export default function Layout({ children, paginaAtual, onNavegar }) {
+export default function Layout({ usuario, pacienteAtual, onSair }) {
   return (
     <div className="layout">
-      <Header
-        titulo="CardioIA"
-        subtitulo="Registro e acompanhamento das suas aferições de pressão arterial."
-      />
-
-      <Nav paginaAtual={paginaAtual} onNavegar={onNavegar} />
-
-      <div className="conteudo">{children}</div>
+      <Header usuario={usuario} pacienteAtual={pacienteAtual} onSair={onSair} />
+      <Nav />
+      <div className="conteudo">
+        <Outlet />
+      </div>
     </div>
   )
 }

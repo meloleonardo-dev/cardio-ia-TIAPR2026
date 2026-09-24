@@ -1,27 +1,52 @@
-export default function Home({ totalAfericoes, onComecar }) {
+import { Link } from 'react-router-dom'
+import { Activity, ClipboardPlus, Users } from 'lucide-react'
+import Card from '../components/ui/Card.jsx'
+
+export default function Home({
+  totalPacientes,
+  totalAfericoes,
+  pacienteAtual,
+  usuario,
+}) {
   return (
-    <section className="painel">
-      <h2>Olá. Vamos acompanhar a sua pressão.</h2>
+    <div className="home">
+      <Card className="painel">
+        <p className="eyebrow">Painel do aparelho</p>
+        <h2>Olá, {usuario?.nome?.split(' ')[0] || 'profissional'}</h2>
+        <p>
+          Escolha um paciente, registre aferições repetidas e acompanhe o
+          recorte educacional do perfil. Login, edição e exclusão agora
+          existem - API e inteligência artificial continuam fora.
+        </p>
+      </Card>
 
-      <p>
-        Nesta etapa o CardioIA registra as aferições que você mesmo mede.
-        Ainda não há inteligência artificial: o foco é organizar os dados
-        com componentes, props e estado.
-      </p>
+      <div className="grade-stats">
+        <Card className="stat">
+          <Users size={22} />
+          <strong>{totalPacientes}</strong>
+          <span>paciente(s)</span>
+        </Card>
+        <Card className="stat">
+          <Activity size={22} />
+          <strong>{totalAfericoes}</strong>
+          <span>aferição(ões)</span>
+        </Card>
+        <Card className="stat">
+          <ClipboardPlus size={22} />
+          <strong>{pacienteAtual ? pacienteAtual.nome : '-'}</strong>
+          <span>perfil em análise</span>
+        </Card>
+      </div>
 
-      <p className="hint">
-        {totalAfericoes === 0
-          ? 'Nenhuma aferição salva ainda. Comece pelo formulário.'
-          : `Você já registrou ${totalAfericoes} aferição(ões).`}
-      </p>
-
-      <button
-        type="button"
-        className="botao-principal"
-        onClick={onComecar}
-      >
-        Registrar aferição
-      </button>
-    </section>
+      <div className="acoes-home">
+        <Link to="/pacientes" className="botao botao-principal">
+          <Users size={18} />
+          Cadastrar ou escolher paciente
+        </Link>
+        <Link to="/afericoes" className="botao botao-secundario">
+          Ir para aferições
+        </Link>
+      </div>
+    </div>
   )
 }

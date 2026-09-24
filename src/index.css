@@ -1,13 +1,26 @@
 :root {
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #0f172a;
-  background: #f8fafc;
+  color: #134e4a;
+  background: #e7f3f1;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --teal-950: #042f2e;
+  --teal-800: #115e59;
+  --teal-700: #0f766e;
+  --teal-600: #0d9488;
+  --teal-100: #ccfbf1;
+  --teal-50: #f0fdfa;
+  --ink: #134e4a;
+  --muted: #5b7874;
+  --line: #cde5e1;
+  --paper: #ffffff;
+  --danger: #b91c1c;
+  --shadow: 0 16px 40px rgb(15 118 110 / 10%);
 }
 
 * {
@@ -18,12 +31,19 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, #d6f3ee 0, transparent 36%),
+    radial-gradient(circle at 90% 10%, #dbeafe 0, transparent 28%),
+    #e7f3f1;
 }
 
 #root {
   min-height: 100vh;
 }
+
 button,
-input {
+input,
+select,
+a {
   font: inherit;
 }
